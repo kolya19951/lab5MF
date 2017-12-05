@@ -10,7 +10,7 @@ T = 2
 
 N1 = 20
 N2 = 20
-M = 666
+M = 1000
 
 h1 = l1 / N1
 h2 = l2 / N2
@@ -84,18 +84,18 @@ def getAnalitic():
 
 
 # 1
-def getG(x, y, t):
-    if type(t) is int:
-        return exp(xi[x] + yi[y] + 2 * ti[t])
-    if type(t) is float:
-        return exp(xi[x] + yi[y] + 2 * t)
-#
-# #3
 # def getG(x, y, t):
 #     if type(t) is int:
-#         return cos(xi[x] + pi / 2) * cosh(2 * yi[y]) * exp(3 * ti[t])
+#         return exp(xi[x] + yi[y] + 2 * ti[t])
 #     if type(t) is float:
-#         return cos(xi[x] + pi / 2) * cosh(2 * yi[y]) * exp(3 * t)
+#         return exp(xi[x] + yi[y] + 2 * t)
+# #
+# #3
+def getG(x, y, t):
+    if type(t) is int:
+        return cos(xi[x] + pi / 2) * cosh(2 * yi[y]) * exp(3 * ti[t])
+    if type(t) is float:
+        return cos(xi[x] + pi / 2) * cosh(2 * yi[y]) * exp(3 * t)
 
 
 # 2
@@ -216,13 +216,13 @@ def LTScheme():
     return y
 
 
-y = LTScheme()
-yA = getAnalitic()
+y = getTask1Result()
+# yA = getAnalitic()
 fig1 = pylab.figure()
 axes = fig1.gca(projection='3d')
 xi, yi = np.meshgrid(xi, yi)
 print(xi.shape)
-axes.plot_surface(xi, yi, y[ti.index(1.995)], cmap='viridis')
-# axes.plot_surface(xi, yi, yA[ti.index(0.996)], cmap='viridis')
-print(np.linalg.norm(y - yA) / np.linalg.norm(yA))
+axes.plot_surface(xi, yi, y[ti.index(0.998)], cmap='viridis')
+# axes.plot_surface(xi, yi, yA[ti.index(1.998)], cmap='viridis')
+# print(np.linalg.norm(y - yA) / np.linalg.norm(yA))
 pylab.show()
